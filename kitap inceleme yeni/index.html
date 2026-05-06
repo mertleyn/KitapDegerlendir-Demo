@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitap Değerlendirme Platformu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo" onclick="goHome()">
+                <i class="fas fa-book-reader"></i> KitapDeğerlendir
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Ana Sayfa</a></li>
+                    <li><a href="#library">Kitaplar</a></li>
+                    <li><a href="#reviews">İncelemeler</a></li>
+                    <li><a href="#add">Kitap Ekle</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>Kitapların Kefi Burada Başlar</h1>
+            <p>En iyi kitapları incele, değerlendir ve okuyucu topluluğuna katıl</p>
+            <div class="search-bar-hero">
+                <input type="text" id="searchInputHero" placeholder="Kitap adı, yazar veya ISBN ile ara...">
+                <button onclick="searchBooksHero()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-books-section">
+        <div class="container">
+            <h2>Öne Çıkan Kitaplar</h2>
+            <div class="featured-books-grid" id="featuredBooksGrid">
+                <!-- Öne çıkan kitaplar burada JavaScript tarafından yüklenir -->
+            </div>
+        </div>
+    </section>
+
+    <section id="library-page" class="page-section" style="display: none;">
+        <div class="container">
+            <h2>Kitap Kütüphanesi</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Kitap veya yazar ara..." onkeyup="searchBooks()">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterBooks('all')">Tümü</button>
+                <button class="filter-btn" onclick="filterBooks('roman')">Roman</button>
+                <button class="filter-btn" onclick="filterBooks('bilim')">Bilim</button>
+                <button class="filter-btn" onclick="filterBooks('tarih')">Tarih</button>
+            </div>
+            <div id="libraryContainer" class="books-grid">
+                <!-- Kitap kütüphanesi buraya -->
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews-page" class="page-section" style="display: none;">
+        <div class="container">
+            <h2>İncelemeler</h2>
+            <div class="sort-bar">
+                <select id="sortReviews" onchange="sortReviews()">
+                    <option value="newest">En Yeni</option>
+                    <option value="highest">En Yüksek Puan</option>
+                    <option value="lowest">En Düşük Puan</option>
+                </select>
+            </div>
+            <div id="reviewsContainer">
+                <!-- İncelemeler buraya -->
+            </div>
+        </div>
+    </section>
+
+    <section id="add-page" class="page-section" style="display: none;">
+        <div class="container">
+            <div class="add-book">
+                <h2>Yeni Kitap Ekle</h2>
+                <form id="bookForm">
+                    <input type="text" id="bookTitle" placeholder="Kitap Adı" required>
+                    <input type="text" id="bookAuthor" placeholder="Yazar Adı" required>
+                    <select id="bookGenre" required>
+                        <option value="">Tür Seçin</option>
+                        <option value="roman">Roman</option>
+                        <option value="bilim">Bilim</option>
+                        <option value="tarih">Tarih</option>
+                        <option value="felsefe">Felsefe</option>
+                        <option value="siyaset">Siyaset</option>
+                    </select>
+                    <input type="number" id="bookYear" placeholder="Yayın Yılı" min="1900" max="2024">
+                    <input type="text" id="bookPages" placeholder="Sayfa Sayısı">
+                    <select id="bookRating" required>
+                        <option value="">Puan Seçin</option>
+                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4)</option>
+                        <option value="3">⭐⭐⭐ (3)</option>
+                        <option value="2">⭐⭐ (2)</option>
+                        <option value="1">⭐ (1)</option>
+                    </select>
+                    <textarea id="bookReview" placeholder="İncelemenizi yazın..." rows="4" required></textarea>
+                    <button type="submit">Kitap Ekle</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalBody">
+                <!-- Kitap detayları buraya -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
